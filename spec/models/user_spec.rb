@@ -18,7 +18,8 @@ describe User, type: :model do
   end
 
   describe "relationships" do
-    it {should have_many :item_orders}
+    it {should have_many :item_orders }
+    it {should have_many :addresses }
     it {should belong_to(:merchant).optional }
   end
 
