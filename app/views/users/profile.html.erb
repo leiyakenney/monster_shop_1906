@@ -7,10 +7,11 @@
     <%= image_tag profile_img.sample, class: 'profile-img' %>
     <br>
     <center>
-      <p class="lead">Address: <%= @user.address %></p>
-      <p class="lead">City: <%= @user.city %></p>
-      <p class="lead">State: <%= @user.state %></p>
-      <p class="lead">Zipcode: <%= @user.zipcode %></p>
+      <% binding.pry %>
+      <p class="lead">Address: <%= @user.addresses.address %></p>
+      <p class="lead">City: <%= @user.addresses.city %></p>
+      <p class="lead">State: <%= @user.addresses.state %></p>
+      <p class="lead">Zipcode: <%= @user.addresses.zipcode %></p>
       <p class="lead">Email: <%= @user.email %></p>
     </center>
   </section>
