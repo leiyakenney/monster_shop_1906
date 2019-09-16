@@ -7,11 +7,15 @@ class UsersController< ApplicationController
   end
 
   def new
-    @user = User.new
+
   end
 
   def create
     @user = User.new(user_params)
+    @address = @user.addresses.new(address_params)
+    if @address.nickname == nil
+      @address.update(nickname: "home")
+    end
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "Welcome #{@user.name}! You are now registered and logged in."
@@ -66,6 +70,10 @@ class UsersController< ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :address, :city, :state, :zipcode, :email, :password, :password_confirmation)
+    params.permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def address_params
+    params.permit(:name, :address, :city, :state, :zip)
   end
 end
