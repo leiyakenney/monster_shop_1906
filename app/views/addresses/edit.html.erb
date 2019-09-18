@@ -1,26 +1,25 @@
-<h1> Please enter your new address: </h1>
+<h1> Please enter your updated address info: </h1>
 <center>
 
-  <%= form_tag edit_user_address_path(@user, @user.addresses.pluck(:user_id).first) %>
+  <%= form_tag user_address_path(@user, @address), method: :patch %>
 
   <%= label_tag :nickname %>
-  <%= text_field_tag :nickname %>
+  <%= text_field_tag :nickname, "#{@address.nickname}"  %>
 
   <%= label_tag :name %>
-  <%= text_field_tag :name %>
+  <%= text_field_tag :name, "#{@address.name}" %>
 
   <%= label_tag :address %>
-  <%= text_field_tag :address %>
+  <%= text_field_tag :address, "#{@address.address}" %>
 
   <%= label_tag :city %>
-  <%= text_field_tag :city %>
+  <%= text_field_tag :city, "#{@address.city}" %>
 
   <%= label_tag :state %>
-  <%= text_field_tag :state %>
+  <%= text_field_tag :state, "#{@address.state}" %>
 
   <%= label_tag :zip %>
-  <%= text_field_tag :zip %>
-
+  <%= text_field_tag :zip, "#{@address.zip}" %>
 
   <%= submit_tag 'Submit' %>
 </center>
