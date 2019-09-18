@@ -1,7 +1,7 @@
 <h1> Please enter your new address: </h1>
 <center>
 
-  <%= form_tag new_user_address_path(@user.id) %>
+  <%= form_tag "/users/:user_id/addresses", method: :post %>
 
   <%= label_tag :nickname %>
   <%= text_field_tag :nickname %>
