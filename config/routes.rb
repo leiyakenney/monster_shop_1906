@@ -45,6 +45,8 @@ Rails.application.routes.draw do
     resources :addresses, except: [:index, :show]
   end
 
+  # post "/users/:user_id/addresses/:/edit"
+
   get "/profile", to: "users#show"
   get "/profile/edit", to: "users#edit"
   patch "/profile", to: "users#update"
