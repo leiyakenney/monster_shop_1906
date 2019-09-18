@@ -17,7 +17,7 @@ RSpec.describe "Registering User" do
     fill_in "Address", with: user_address
     fill_in "City", with: user_city
     fill_in "State", with: user_state
-    fill_in "Zipcode", with: user_zipcode
+    fill_in "Zip", with: user_zipcode
     fill_in "Email", with: user_email
     fill_in "Password", with: user_password
     fill_in "Password confirmation", with: user_confirm_password

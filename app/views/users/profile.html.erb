@@ -7,11 +7,16 @@
     <%= image_tag profile_img.sample, class: 'profile-img' %>
     <br>
     <center>
-      <p class="lead">Address: <%= @user.address %></p>
-      <p class="lead">City: <%= @user.city %></p>
-      <p class="lead">State: <%= @user.state %></p>
-      <p class="lead">Zipcode: <%= @user.zipcode %></p>
+      <center>
+      <% @user.addresses.each do |address| %>
+      <h2><%= @user.addresses.pluck(:nickname).first %></h2>
+      <p class="lead">Address: <%= @user.addresses.pluck(:address).first %></p>
+      <p class="lead">City: <%= @user.addresses.pluck(:city).first %></p>
+      <p class="lead">State: <%= @user.addresses.pluck(:state).first %></p>
+      <p class="lead">Zipcode: <%= @user.addresses.pluck(:zip).first %></p>
+      <% end %>
       <p class="lead">Email: <%= @user.email %></p>
+      </center>
     </center>
   </section>
 
@@ -19,15 +24,16 @@
 <br>
 <center>
   <section id= "user-profile-actions">
-    <%= link_to "Edit Password", "profile/edit_password", class: "btn btn-success" %>
+    <%= link_to "Edit Password", profile_edit_password_path, class: "btn btn-success" %>
 
     <%= link_to "Edit Profile", "profile/edit", class: "lead btn btn-info" %>
 
     <%= link_to "My Orders", "/profile/orders", class: "btn btn-secondary" %>
+
+    <br><br>
+    <%= link_to "Add Address", new_user_address_path(@user), class: "btn btn-success" %>
+    <%= link_to "Update Address", user_address_path(@user,@user.addresses.pluck(:address).first), method: :patch, class: "btn btn-info" %>
+    <%= link_to "Delete Address", user_address_path(@user,@user.addresses.pluck(:address).first), method: :delete, class: "btn btn-secondary" %>
   </section>
-
-
-
 </center>
-
 </div>

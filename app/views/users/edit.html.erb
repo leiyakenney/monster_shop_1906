@@ -1,25 +1,24 @@
 <h1> Update User Profile</h1>
 <section id= "user-profile-edit-form">
-  <%= form_for(@user, url: profile_path)  do |f| %>
+  <%= form_tag profile_edit_path %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name%>
+      <%= label_tag :name %>
+      <%= text_field_tag :name, "#{@user.name}"%>
 
-      <%= f.label :address %>
-      <%= f.text_field :address %>
+      <%= label_tag :address %>
+      <%= text_field_tag :address, "#{@user.addresses.pluck(:address).first}" %>
 
-      <%= f.label :city %>
-      <%= f.text_field :city %>
+      <%= label_tag :city %>
+      <%= text_field_tag :city, "#{@user.addresses.pluck(:city).first}" %>
 
-      <%= f.label :state %>
-      <%= f.text_field :state %>
+      <%= label_tag :state %>
+      <%= text_field_tag :state, "#{@user.addresses.pluck(:state).first}" %>
 
-      <%= f.label :zipcode %>
-      <%= f.text_field :zipcode %>
+      <%= label_tag :zipcode %>
+      <%= text_field_tag :zipcode, "#{@user.addresses.pluck(:zip).first}" %>
 
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+      <%= label_tag :email %>
+      <%= text_field_tag :email, "#{@user.email}" %>
 
-      <%= f.submit 'Update Profile' %>
-  <% end %>
+      <%= submit_tag 'Update Profile' %>
 </section>
