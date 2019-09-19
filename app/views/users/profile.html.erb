@@ -7,7 +7,7 @@
     <%= image_tag profile_img.sample, class: 'profile-img' %>
     <br>
     <center>
-      <center>
+      <section id="user-addresses">
       <% @user.addresses.each do |address| %>
       <h2><%= address.nickname %></h2>
       <p class="lead">Address: <%= address.address %></p>
@@ -20,7 +20,7 @@
       <% end %>
       <br><br><br>
       <p class="lead">Email: <%= @user.email %></p>
-      </center>
+      </section>
     </center>
   </section>
 
