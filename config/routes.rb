@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   get "/profile/orders", to: "users#show_orders"
   post "/profile/orders", to: "orders#create"
   get "/profile/orders/new", to: "orders#new"
+  post "/profile/orders/new", to: "orders#create"
   get "/profile/orders/:id", to: "users#show_order"
 
   post "/cart/:item_id", to: "cart#add_item"
