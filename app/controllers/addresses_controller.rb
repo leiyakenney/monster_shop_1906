@@ -38,7 +38,7 @@ class AddressesController< ApplicationController
   def destroy
     @address = Address.find(params[:id])
     @user = @address.user
-    if @address.shipped_orders.empty?
+    if @address.shipped_orders.empty? && @address.no_orders?
       @address.destroy
       flash[:success] = "Your address has been deleted!"
     else
