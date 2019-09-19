@@ -13,7 +13,9 @@
       <p class="lead">Address: <%= address.address %></p>
       <p class="lead">City: <%= address.city %>, <%= address.state %> <%= address.zip %></p>
       <br>
-      <%= link_to "Update Address", edit_user_address_path(@user,address), class: "btn btn-info" %>
+      <% if address.shipped_orders.empty? %>
+        <%= link_to "Update Address", edit_user_address_path(@user,address), class: "btn btn-info" %>
+      <% end %>
       <%= link_to "Delete Address", user_address_path(@user,address), method: :delete, class: "btn btn-secondary" %>
       <% end %>
       <br><br><br>
