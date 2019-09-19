@@ -22,23 +22,13 @@
 </table>
 <h3 align = "right">Total: <%= number_to_currency(cart.total)%></h3>
 <center>
-  <h2>Shipping Info:</h2>
-  <%= form_for(@order, url: "/profile/orders") do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-
-    <%= f.label :city %>
-    <%= f.text_field :city %>
-
-    <%= f.label :state %>
-    <%= f.text_field :state %>
-
-    <%= f.label :zip %>
-    <%= f.number_field :zip %>
-
-    <%= f.submit %>
+  <h2>Shipping Address:</h2>
+  <% if current_user.addresses.empty? %>
+    <p>Please <%= link_to "add an address", new_user_address_path(current_user) %> to continue checking out.</p>
+  <% else %>
+    <%= form_tag(profile_orders_path) do%>
+      <%= select_tag "address", options_from_collection_for_select(@addresses, "id", "nickname") %>
+      <%= submit_tag "Complete Checkout"%>
+    <% end %>
   <% end %>
 </center>

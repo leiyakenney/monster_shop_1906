@@ -9,4 +9,8 @@ class Address < ApplicationRecord
     orders.where(status: 'shipped')
   end
 
+  def no_orders?
+    orders.empty?
+  end
+
 end

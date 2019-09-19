@@ -7,16 +7,20 @@
     <%= image_tag profile_img.sample, class: 'profile-img' %>
     <br>
     <center>
-      <center>
+      <section id="user-addresses">
       <% @user.addresses.each do |address| %>
-      <h2><%= @user.addresses.pluck(:nickname).first %></h2>
-      <p class="lead">Address: <%= @user.addresses.pluck(:address).first %></p>
-      <p class="lead">City: <%= @user.addresses.pluck(:city).first %></p>
-      <p class="lead">State: <%= @user.addresses.pluck(:state).first %></p>
-      <p class="lead">Zipcode: <%= @user.addresses.pluck(:zip).first %></p>
+      <h2><%= address.nickname %></h2>
+      <p class="lead">Address: <%= address.address %></p>
+      <p class="lead">City: <%= address.city %>, <%= address.state %> <%= address.zip %></p>
+      <br>
+      <% if address.shipped_orders.empty? %>
+        <%= link_to "Update Address", edit_user_address_path(@user,address), class: "btn btn-info" %>
       <% end %>
+      <%= link_to "Delete Address", user_address_path(@user,address), method: :delete, class: "btn btn-secondary" %>
+      <% end %>
+      <br><br><br>
       <p class="lead">Email: <%= @user.email %></p>
-      </center>
+      </section>
     </center>
   </section>
 
@@ -32,8 +36,6 @@
 
     <br><br>
     <%= link_to "Add Address", new_user_address_path(@user), class: "btn btn-success" %>
-    <%= link_to "Update Address", user_address_path(@user,@user.addresses.pluck(:address).first), method: :patch, class: "btn btn-info" %>
-    <%= link_to "Delete Address", user_address_path(@user,@user.addresses.pluck(:address).first), method: :delete, class: "btn btn-secondary" %>
   </section>
 </center>
 </div>

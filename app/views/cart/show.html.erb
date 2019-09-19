@@ -46,23 +46,10 @@
 </table>
   <p>Total: <%= number_to_currency(cart.total) %></p>
   <p><%= link_to "Empty Cart", "/cart", method: :delete %></p>
-
   <% unless current_user.nil? %>
-    <% if current_user.addresses.empty? %>
-      <p>Please <%= link_to "add an address", new_user_address_path %> to continue checking out.</p>
-    <% else %>
-      <%= form_for @order do |f| %>
-        <% current_user.addresses.each do |address| %>
-          <%= f.radio_button :address_id, address.id %>
-          <%= r.label :address_id, address.nickname %>
-        <% end %>
-        <br>
-        <%= link_to "New Address", new_user_address_path %>
       <p><%= link_to "Checkout", '/profile/orders/new', method: :get %></p>
-    <% end %>
   <% end %>
 <% else %>
   <h3 align= "center">Cart is currently empty</h3>
 <% end %>
-<table>
 </center>
