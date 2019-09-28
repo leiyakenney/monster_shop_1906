@@ -6,7 +6,7 @@ describe User, type: :model do
     it {should validate_presence_of :address}
     it {should validate_presence_of :city}
     it {should validate_presence_of :state}
-    it {should validate_presence_of :zipcode}
+    it {should validate_presence_of :zip}
     it {should validate_presence_of :email}
     it {should validate_presence_of :password}
 
@@ -26,12 +26,14 @@ describe User, type: :model do
   describe "roles" do
     it "can be created as a default user" do
       regular_user = User.create!(name: "George Jungle",
-                    address: "1 Jungle Way",
-                    city: "Jungleopolis",
-                    state: "FL",
-                    zipcode: "77652",
                     email: "junglegeorge@email.com",
                     password: "Tree123")
+      regular_user_address = regular_user.addresses.create!(name: regular_user.name,
+        address: "1 Jungle Way",
+        city: "Jungleopolis",
+        state: "FL",
+        zip: "77652",
+        nickname: 'home')
 
       expect(regular_user.role).to eq("regular_user")
       expect(regular_user.regular_user?).to be_truthy
@@ -39,13 +41,15 @@ describe User, type: :model do
 
     it "can be created as a merchant employee" do
       merchant_employee = User.create!(name: "Dwight Schrute",
-        address: "175 Beet Rd",
-        city: "Scranton",
-        state: "PA",
-        zipcode: "18501",
         email: "dwightkschrute@email.com",
         password: "IdentityTheftIsNotAJoke",
         role: 1)
+      merchant_employee_address = merchant_employee.addresses.create!(name: merchant_employee.name,
+        address: "175 Beet Rd",
+        city: "Scranton",
+        state: "PA",
+        zip: "18501",
+        nickname: 'home')
 
       expect(merchant_employee.role).to eq("merchant_employee")
       expect(merchant_employee.merchant_employee?).to be_truthy
@@ -53,13 +57,15 @@ describe User, type: :model do
 
     it "can be created as a merchant admin" do
       merchant_admin = User.create!(name: "Michael Scott",
-                    address: "1725 Slough Ave",
-                    city: "Scranton",
-                    state: "PA",
-                    zipcode: "18501",
                     email: "michael.s@email.com",
                     password: "WorldBestBoss",
                     role: 2)
+      merchant_admin_address = merchant_admin.addresses.create!(name: merchant_admin.name,
+                    address: "1725 Slough Ave",
+                    city: "Scranton",
+                    state: "PA",
+                    zip: "18501",
+                    nickname: 'home')
 
       expect(merchant_admin.role).to eq("merchant_admin")
       expect(merchant_admin.merchant_admin?).to be_truthy
@@ -67,13 +73,15 @@ describe User, type: :model do
 
     it "can be created as a admin user" do
       admin_user = User.create!(name: "Leslie Knope",
-                    address: "14 Somewhere Ave",
-                    city: "Pawnee",
-                    state: "IN",
-                    zipcode: "18501",
                     email: "recoffice@email.com",
                     password: "Waffles",
                     role: 3)
+      admin_user_address = admin_user.addresses.create!(name: admin_user.name,
+                    address: "14 Somewhere Ave",
+                    city: "Pawnee",
+                    state: "IN",
+                    zip: "18501",
+                    nickname: 'work')
 
       expect(admin_user.role).to eq("admin_user")
       expect(admin_user.admin_user?).to be_truthy
