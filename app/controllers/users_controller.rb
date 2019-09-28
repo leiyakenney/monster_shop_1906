@@ -11,7 +11,8 @@ class UsersController< ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    @user = User.create!(user_params)
+    @user.save
     @address = @user.addresses.create(address_params)
     if @address.nickname == nil
       @address.update(nickname: "home")
