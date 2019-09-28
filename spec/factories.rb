@@ -1,10 +1,6 @@
 FactoryBot.define do
   factory :user do
     name { Faker::Name.name }
-    address { Faker::Address.street_address }
-    city { Faker::Address.city }
-    state { Faker::Address.state }
-    zipcode { Faker::Address.zip_code }
     email { Faker::Internet.safe_email }
     password { Faker::Lorem.word }
   end
